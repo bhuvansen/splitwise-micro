@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ExpenseRepository extends JpaRepository<Expense, String> {
     List<Expense> findByExpenseGroup_Id(String groupId);
+    List<Expense> findByExpenseGroup_IdOrderByCreatedAtDesc(String groupId);
+
 }

@@ -9,5 +9,4 @@ public interface ExpenseSplitRepository extends JpaRepository<ExpenseSplit, Stri
     List<ExpenseSplit> findByExpense_Id(String expenseId);
     List<ExpenseSplit> findByExpense_ExpenseGroup_Id(String groupId);
     void deleteByExpense_Id(String expenseId);
-
 }
