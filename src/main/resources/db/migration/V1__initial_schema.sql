@@ -43,3 +43,23 @@ CREATE TABLE expense_splits (
     CONSTRAINT fk_es_expense FOREIGN KEY (expense_id) REFERENCES expenses(id),
     CONSTRAINT fk_es_user FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+CREATE TABLE settlements (
+    id VARCHAR(255) PRIMARY KEY,
+
+    group_id VARCHAR(255) NOT NULL,
+    from_user_id VARCHAR(255) NOT NULL,
+    to_user_id VARCHAR(255) NOT NULL,
+
+    amount DECIMAL(12,2) NOT NULL,
+    settled_at TIMESTAMP NOT NULL,
+
+    CONSTRAINT fk_settlement_group
+        FOREIGN KEY (group_id) REFERENCES expense_groups(id),
+
+    CONSTRAINT fk_settlement_from_user
+        FOREIGN KEY (from_user_id) REFERENCES users(id),
+
+    CONSTRAINT fk_settlement_to_user
+        FOREIGN KEY (to_user_id) REFERENCES users(id)
+);

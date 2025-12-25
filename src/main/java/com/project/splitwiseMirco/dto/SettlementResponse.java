@@ -1,8 +1,13 @@
 package com.project.splitwiseMirco.dto;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 
 public record SettlementResponse(
-        String groupId,
-        List<SettlementDto> settlements
+        String id,
+        String fromUserId,
+        String toUserId,
+        BigDecimal amount,
+        LocalDateTime settledAt
 ) {}
