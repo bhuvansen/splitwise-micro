@@ -15,6 +15,7 @@ public class Settlement {
 
     @Id
     @Column(nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     // Group where settlement happened

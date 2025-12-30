@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 public class ExpenseSplit {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @ManyToOne

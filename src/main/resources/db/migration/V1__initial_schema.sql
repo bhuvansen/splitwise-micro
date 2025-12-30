@@ -6,7 +6,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE expense_groups (
-    id VARCHAR(255) PRIMARY KEY,
+    id VARCHAR(36) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     created_by VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -15,7 +15,7 @@ CREATE TABLE expense_groups (
 );
 
 CREATE TABLE group_members (
-    id VARCHAR(255) PRIMARY KEY,
+    id VARCHAR(36) PRIMARY KEY,
     group_id VARCHAR(255) NOT NULL,
     user_id VARCHAR(255) NOT NULL,
     joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -25,7 +25,7 @@ CREATE TABLE group_members (
 );
 
 CREATE TABLE expenses (
-    id VARCHAR(255) PRIMARY KEY,
+    id VARCHAR(36) PRIMARY KEY,
     group_id VARCHAR(255) NOT NULL,
     paid_by VARCHAR(255) NOT NULL,
     amount DECIMAL(10,2) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE expenses (
 );
 
 CREATE TABLE expense_splits (
-    id VARCHAR(255) PRIMARY KEY,
+    id VARCHAR(36) PRIMARY KEY,
     expense_id VARCHAR(255) NOT NULL,
     user_id VARCHAR(255) NOT NULL,
     share_amount DECIMAL(10,2) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE expense_splits (
 );
 
 CREATE TABLE settlements (
-    id VARCHAR(255) PRIMARY KEY,
+    id VARCHAR(36) PRIMARY KEY,
 
     group_id VARCHAR(255) NOT NULL,
     from_user_id VARCHAR(255) NOT NULL,

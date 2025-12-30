@@ -1,5 +1,6 @@
 package com.project.splitwiseMirco.controller;
 
+import com.project.splitwiseMirco.dto.CreateGroupRequest;
 import com.project.splitwiseMirco.entity.ExpenseGroup;
 import com.project.splitwiseMirco.service.ExpenseGroupService;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +20,10 @@ public class ExpenseGroupController {
     public List<ExpenseGroup> getMyGroups() {
         return service.getMyGroups();
     }
+
     @PostMapping
-    public ExpenseGroup create(@RequestParam String name) {
-        return service.createGroup(name);
+    public ExpenseGroup create(@RequestBody CreateGroupRequest request) {
+        return service.createGroup(request.getName());
     }
 
     @PostMapping("/{groupId}/members/{userId}")
