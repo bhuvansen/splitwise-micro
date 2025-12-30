@@ -11,7 +11,7 @@ import java.time.Instant;
 public class User {
 
     @Id
-    @Column(nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @Column(nullable = false, unique = true)

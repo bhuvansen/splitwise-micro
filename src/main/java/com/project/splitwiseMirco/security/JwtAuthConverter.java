@@ -19,26 +19,52 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
         this.userRepository = userRepository;
     }
 
+//    @Override
+//    public AbstractAuthenticationToken convert(Jwt jwt) {
+//
+//        String email = jwt.getClaimAsString("email");
+//        String name = jwt.getClaimAsString("name");
+//        String userId = jwt.getSubject();
+//        if (email != null) {
+//            userRepository.findByEmail(email).orElseGet(() -> {
+//                User user = new User();
+//                user.setId(userId);
+//                user.setEmail(email);
+//                user.setName(name);
+//                user.setCreatedAt(Instant.now());
+//                return userRepository.save(user);
+//            });
+//        }
+//
+//        return new JwtAuthenticationToken(
+//                jwt,
+//                List.of(new SimpleGrantedAuthority("ROLE_USER"))
+//        );
+//    }
+
     @Override
     public AbstractAuthenticationToken convert(Jwt jwt) {
 
         String email = jwt.getClaimAsString("email");
         String name = jwt.getClaimAsString("name");
-        String userId = jwt.getSubject();
-        if (email != null) {
-            userRepository.findByEmail(email).orElseGet(() -> {
-                User user = new User();
-                user.setId(userId);
-                user.setEmail(email);
-                user.setName(name);
-                user.setCreatedAt(Instant.now());
-                return userRepository.save(user);
-            });
+
+        if (email == null) {
+            throw new RuntimeException("Email not found in token");
         }
+
+        userRepository.findByEmail(email)
+                .orElseGet(() -> {
+                    User user = new User();
+                    user.setEmail(email);
+                    user.setName(name);
+                    user.setCreatedAt(Instant.now());
+                    return userRepository.save(user);
+                });
 
         return new JwtAuthenticationToken(
                 jwt,
                 List.of(new SimpleGrantedAuthority("ROLE_USER"))
         );
     }
+
 }

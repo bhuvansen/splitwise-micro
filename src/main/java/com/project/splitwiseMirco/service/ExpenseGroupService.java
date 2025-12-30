@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.List;
 
 @Service
 public class ExpenseGroupService {
@@ -27,6 +28,14 @@ public class ExpenseGroupService {
         this.groupRepository = groupRepository;
         this.groupMemberRepository = groupMemberRepository;
         this.userRepository = userRepository;
+    }
+
+    @Transactional(readOnly = true)
+    public List<ExpenseGroup> getMyGroups() {
+
+        String userId = SecurityUtil.currentUserId();
+
+        return groupRepository.findAllByUserId(userId);
     }
 
     // 1️⃣ Create Group
