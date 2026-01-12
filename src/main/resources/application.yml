@@ -10,9 +10,9 @@ spring:
           issuer-uri: https://accounts.google.com
   datasource:
 
-    url: jdbc:mysql://${{MYSQLUSER}}:${{MYSQL_ROOT_PASSWORD}}@${{RAILWAY_TCP_PROXY_DOMAIN}}:${{RAILWAY_TCP_PROXY_PORT}}/${{MYSQL_DATABASE}}
-    username: root
-    password: AxgAqxUJvawFlwToHpwpuzXJhHUdNBNd
+    url: jdbc:mysql://${MYSQLUSER}:${MYSQL_ROOT_PASSWORD}@${RAILWAY_TCP_PROXY_DOMAIN}:${RAILWAY_TCP_PROXY_PORT}/${MYSQL_DATABASE}
+    username: ${MYSQLUSER}
+    password: ${MYSQL_ROOT_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
