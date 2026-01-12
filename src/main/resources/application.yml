@@ -6,11 +6,11 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${{AUTHISSUER}}
+          issuer-uri: ${AUTHISSUER}
   datasource:
-    url: jdbc:mysql://${{MYSQLUSER}}:${{MYSQL_ROOT_PASSWORD}}@${{RAILWAY_PRIVATE_DOMAIN}}:3306/${{MYSQL_DATABASE}}
-    username: ${{MYSQLUSER}}
-    password: ${{MYSQL_ROOT_PASSWORD}}
+    url: jdbc:mysql://${MYSQL_ROOT_PASSWORD}@${RAILWAY_PRIVATE_DOMAIN}:3306/${MYSQL_DATABASE}
+    username: ${MYSQLUSER}
+    password: ${MYSQL_ROOT_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
