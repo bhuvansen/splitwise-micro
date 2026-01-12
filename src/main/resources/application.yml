@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:8080}
+  port: 8080
 
 
 spring:
@@ -7,12 +7,12 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${AUTHISSUER}
+          issuer-uri: https://accounts.google.com
   datasource:
 
-    url: jdbc:mysql://${MYSQLUSER}:${MYSQL_ROOT_PASSWORD}@${RAILWAY_PRIVATE_DOMAIN}:3306/${MYSQL_DATABASE}
-    username: ${MYSQLUSER}
-    password: ${MYSQL_ROOT_PASSWORD}
+    url: jdbc:mysql://${{MYSQLUSER}}:${{MYSQL_ROOT_PASSWORD}}@${{RAILWAY_TCP_PROXY_DOMAIN}}:${{RAILWAY_TCP_PROXY_PORT}}/${{MYSQL_DATABASE}}
+    username: root
+    password: AxgAqxUJvawFlwToHpwpuzXJhHUdNBNd
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
