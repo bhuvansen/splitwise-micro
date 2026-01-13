@@ -15,4 +15,5 @@ public interface GroupMemberRepository extends JpaRepository<GroupMember, String
     List<GroupMember> findByExpenseGroup_Id(String groupId);
 
     void deleteByExpenseGroup_Id(String groupId);
+    void deleteByExpenseGroup_IdAndUser_Id(String groupId, String userId);
 }

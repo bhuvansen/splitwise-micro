@@ -121,7 +121,6 @@ public class ExpenseGroupService {
 
     @Transactional
     public void deleteGroup(String groupId) {
-        System.out.println("Deleting group: " + groupId);
         String currentUserId = SecurityUtil.currentUserId();
 
         ExpenseGroup group = groupRepository.findById(groupId)
@@ -140,6 +139,18 @@ public class ExpenseGroupService {
         return groupMemberRepository.findByExpenseGroup_Id(groupId);
     }
 
+    @Transactional
+    public  void deleteGroupMember(String groupId, String userId) {
+
+        ExpenseGroup group = groupRepository.findById(groupId)
+                .orElseThrow(() -> new RuntimeException("Group not found"));
+
+        if (!groupMemberRepository.existsByExpenseGroup_IdAndUser_Id(groupId, userId)) {
+            throw new RuntimeException("User is not a group member");
+        }
+
+        groupMemberRepository.deleteByExpenseGroup_IdAndUser_Id(groupId, userId);
+    }
     // Membership check
     public void validateMembership(String groupId) {
 

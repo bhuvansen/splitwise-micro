@@ -46,7 +46,6 @@ public class ExpenseGroupController {
 
     @DeleteMapping("/{groupId}")
     public void deleteGroup(@PathVariable String groupId) {
-        System.out.println("Deleting group with ID controller: " + groupId);
         service.deleteGroup(groupId);
     }
     @GetMapping("/{groupId}/members")
@@ -54,4 +53,8 @@ public class ExpenseGroupController {
         return service.getMembers(groupId);
     }
 
+    @DeleteMapping("/{groupId}/members/{userId}")
+    public void deleteGroup(@PathVariable String groupId, @PathVariable String userId) {
+        service.deleteGroupMember(groupId, userId);
+    }
 }
